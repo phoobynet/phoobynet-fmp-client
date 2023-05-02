@@ -1,4 +1,4 @@
-import { type CompanyOutlook } from './types/CompanyOutlook'
+import { type CompanyOutlook } from './types'
 import { getData } from '../client'
 
 export const getCompanyOutlook = async (symbol: string): Promise<CompanyOutlook> => {
