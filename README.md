@@ -7,6 +7,7 @@ See [here](https://site.financialmodelingprep.com/developer/docs) for more infor
 ## TODO
 
 - [ ] - Stock news
+- [ ] - Historical prices
 - [ ] - Market performance
   - [ ] - Sectors PE Ratio
   - [ ] - Industries PE Ratio
