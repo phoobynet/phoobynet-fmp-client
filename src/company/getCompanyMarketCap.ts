@@ -2,7 +2,22 @@ import { getData } from '../client'
 import { type CompanyMarketCap } from './types'
 import { z } from 'zod'
 
-export const getCompanyMarketCap = async (symbol: string): Promise<CompanyMarketCap[]> => {
-  symbol = z.string().nonempty('symbol cannot be empty').parse(symbol)
-  return await getData<CompanyMarketCap[]>('/v3/market-capitalization/' + symbol) ?? []
-}
+const DEFAULT_WEEK_PATTERN =
+  '1-5|0800,0900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100'
+
+/**
+ * https://site.financialmodelingprep.com/developer/docs/market-capitalization-api/
+ * @param {string} symbol
+ * @param {string} [weekPattern] - caching pattern
+ */
+export const getCompanyMarketCap = async (
+  symbol: string,
+  weekPattern = DEFAULT_WEEK_PATTERN,
+): Promise<CompanyMarketCap[]> =>
+  (await getData<CompanyMarketCap[]>(
+    `/v3/market-capitalization/${z
+      .string()
+      .nonempty('symbol cannot be empty')
+      .parse(symbol)}`,
+    weekPattern,
+  )) ?? []

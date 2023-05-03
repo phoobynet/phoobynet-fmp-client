@@ -1,8 +1,22 @@
 import { getData } from '../client'
-import { z } from 'zod'
 import { type CompanyProfile } from './types'
+import { z } from 'zod'
 
-export const getCompanyProfile = async (symbol: string): Promise<CompanyProfile[] | null> => {
-  symbol = z.string().nonempty('symbol cannot be empty').parse(symbol)
-  return await getData<CompanyProfile[]>('/v3/profile/' + symbol) ?? []
-}
+const DEFAULT_WEEK_PATTERN = '1-5|0400'
+
+/**
+ * https://site.financialmodelingprep.com/developer/docs/companies-key-stats-free-api/
+ * @param {string} symbol
+ * @param {string} [weekPattern] - caching pattern
+ */
+export const getCompanyProfile = async (
+  symbol: string,
+  weekPattern = DEFAULT_WEEK_PATTERN,
+): Promise<CompanyProfile[] | null> =>
+  (await getData<CompanyProfile[]>(
+    `/v3/profile/${z
+      .string()
+      .nonempty('symbol cannot be empty')
+      .parse(symbol)}`,
+    weekPattern,
+  )) ?? []
