@@ -6,6 +6,7 @@ See [here](https://site.financialmodelingprep.com/developer/docs) for more infor
 
 ## TODO
 
+- [ ] - Test!!!!!
 - [ ] - Stock news
 - [ ] - Historical prices
 - [ ] - Market performance
@@ -16,4 +17,4 @@ See [here](https://site.financialmodelingprep.com/developer/docs) for more infor
   - [ ] - Most Loser
   - [ ] - Most Active
 - [ ] - Caching - considering bringing weekly schedule along with some sort of TTL storage mechanism
-- [ ] - Testing - yes, that's right, testing.
+- [ ] - Just in case you forgot, write some damn tests!
