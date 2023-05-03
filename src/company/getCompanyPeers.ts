@@ -1,6 +1,6 @@
 import { getData } from '../client'
 import { type CompanyPeers } from './types'
-import { z } from 'zod'
+import { first } from 'lodash-es'
 
 /**
  * https://site.financialmodelingprep.com/developer/docs/stock-peers-api/
@@ -10,11 +10,8 @@ import { z } from 'zod'
 export const getCompanyPeers = async (
   symbol: string,
   weekPattern = '1-5|0400',
-): Promise<CompanyPeers[]> =>
-  (await getData<CompanyPeers[]>(
-    `/v4/company/peers/${z
-      .string()
-      .nonempty('symbol cannot be empty')
-      .parse(symbol)}`,
+): Promise<CompanyPeers | undefined> =>
+  await getData<CompanyPeers[]>(
+    `/v4/company/peers/${symbol}`,
     weekPattern,
-  )) ?? []
+  ).then(first)

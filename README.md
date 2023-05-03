@@ -4,6 +4,26 @@ Very unofficial client for accessing the basic (non-pro/non-enterprise) services
 
 See [here](https://site.financialmodelingprep.com/developer/docs) for more information.
 
+## Usage
+
+```typescript
+import { getCompanyProfile, setup } from '@phoobymet/fmp-client'
+
+setup(process.env.FMP_API_KEY)
+
+getComputedProfile('AAPL').then(companyProfile => {
+  console.log(companyProfile)
+})
+```
+
+## Usage with custom cache
+
+TODO
+
+```typescript
+
+```
+
 ## TODO
 
 - [ ] - Test!!!!!

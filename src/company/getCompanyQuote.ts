@@ -1,6 +1,6 @@
 import { getData } from '../client'
 import { type CompanyQuote } from './types'
-import { z } from 'zod'
+import { first } from 'lodash-es'
 
 const DEFAULT_WEEK_PATTERN = '1-5|0900-0000|2'
 
@@ -12,8 +12,5 @@ const DEFAULT_WEEK_PATTERN = '1-5|0900-0000|2'
 export const getCompanyQuote = async (
   symbol: string,
   weekPattern = DEFAULT_WEEK_PATTERN,
-): Promise<CompanyQuote[]> =>
-  (await getData<CompanyQuote[]>(
-    `/v3/quote/${z.string().nonempty('symbol cannot be empty').parse(symbol)}`,
-    weekPattern,
-  )) ?? []
+): Promise<CompanyQuote | undefined> =>
+  await getData<CompanyQuote[]>(`/v3/quote/${symbol}`, weekPattern).then(first)

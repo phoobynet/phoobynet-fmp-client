@@ -39,9 +39,10 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@phoobynet/is-stale": "^1.0.1",
     "axios": "^1.4.0",
     "lodash-es": "^4.17.21",
-    "zod": "^3.21.4",
-    "@phoobynet/is-stale": "^1.0.1"
+    "reflect-metadata": "^0.1.13",
+    "zod": "^3.21.4"
   }
 }
