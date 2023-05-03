@@ -1,6 +1,6 @@
 {
   "name": "@phoobynet/fmp-client",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Basic and incomplete API wrapper around Financial Modelling Preps API",
   "main": "dist/index.js",
   "scripts": {
